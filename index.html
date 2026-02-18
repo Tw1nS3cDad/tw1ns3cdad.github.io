@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tw1nS3cDad</title>
+  <meta name="description" content="Security Operations | ISC2 CC | TryHackMe SEC1 | Protect • Detect • Respond" />
+  <style>
+    :root{
+      --bg:#07090d;
+      --panel:rgba(255,255,255,.06);
+      --text:#f4f6ff;
+      --muted:rgba(244,246,255,.72);
+      --line:rgba(244,246,255,.14);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 50% -10%, rgba(120,255,200,.08), transparent 60%),
+        radial-gradient(800px 500px at 15% 10%, rgba(120,140,255,.10), transparent 55%),
+        var(--bg);
+      font-family:var(--sans);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px 16px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* subtle matrix vibe */
+    .rain{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity:.12;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, transparent 1px 22px),
+        repeating-linear-gradient(180deg, rgba(120,255,200,.12) 0 1px, transparent 1px 26px);
+      mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 75%);
+      animation: drift 10s linear infinite;
+    }
+    @keyframes drift{
+      0%{transform:translateY(-20px)}
+      100%{transform:translateY(20px)}
+    }
+
+    .wrap{width:min(860px,100%); position:relative;}
+    .card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, var(--panel), rgba(255,255,255,.02));
+      border-radius:18px;
+      padding:22px;
+      box-shadow:0 18px 50px rgba(0,0,0,.55);
+    }
+
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      border-bottom:1px solid var(--line);
+      padding-bottom:16px;
+      margin-bottom:16px;
+    }
+
+    .id{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width:240px;
+    }
+
+    .name{
+      font-size:28px;
+      font-weight:800;
+      letter-spacing:.3px;
+      margin:0;
+      line-height:1.05;
+    }
+
+    .tagline{
+      margin:0;
+      color:var(--muted);
+      font-family:var(--mono);
+      font-size:13px;
+      letter-spacing:.2px;
+    }
+
+    .pillrow{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .pill{
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.25);
+      color:var(--text);
+      padding:8px 10px;
+      border-radius:999px;
+      font-family:var(--mono);
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap:14px;
+    }
+
+    @media (max-width:760px){
+      .grid{grid-template-columns:1fr}
+      .pillrow{justify-content:flex-start}
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+      border-radius:16px;
+      padding:16px;
+    }
+
+    .btns{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    a.btn{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      text-decoration:none;
+      color:var(--text);
+      font-weight:650;
+      letter-spacing:.2px;
+    }
+    a.btn:hover{border-color:rgba(244,246,255,.28)}
+    .btn small{
+      font-family:var(--mono);
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .qrbox{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:center;
+      text-align:center;
+    }
+    .qrbox img{
+      width:min(220px, 70vw);
+      height:auto;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:#fff;
+      padding:10px;
+    }
+    .hint{
+      margin:0;
+      color:var(--muted);
+      font-family:var(--mono);
+      font-size:12px;
+      line-height:1.35;
+    }
+
+    footer{
+      margin-top:14px;
+      color:rgba(244,246,255,.55);
+      font-family:var(--mono);
+      font-size:11px;
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+  <div class="rain"></div>
+
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div class="id">
+          <h1 class="name">Tw1nS3cDad</h1>
+          <p class="tagline">Security Operations | ISC2 CC | TryHackMe SEC1 | Protect • Detect • Respond</p>
+        </div>
+        <div class="pillrow">
+          <div class="pill">SOC focused</div>
+          <div class="pill">Threat detection</div>
+          <div class="pill">Continuous learning</div>
+        </div>
+      </header>
+
+      <div class="grid">
+        <section class="panel">
+          <div class="btns">
+            <a class="btn" href="https://www.linkedin.com/in/nelsonhernandez-" target="_blank" rel="noopener">
+              <span>LinkedIn</span>
+              <small>open</small>
+            </a>
+
+            <a class="btn" href="https://drive.google.com/file/d/1jNX2TWEC6QOh1vy9yYE-4pnN-0hQXtdq/view?usp=sharing" target="_blank" rel="noopener">
+              <span>Resume (PDF)</span>
+              <small>view</small>
+            </a>
+
+            <a class="btn" href="https://tryhackme.com/p/Tw1ns3cdad" target="_blank" rel="noopener">
+              <span>TryHackMe Profile</span>
+              <small>view</small>
+            </a>
+          </div>
+        </section>
+
+        <aside class="panel">
+          <div class="qrbox">
+            <img src="qr.png" alt="QR code to Tw1nS3cDad landing page">
+            <p class="hint">Scan or tap the NFC card to open this page.</p>
+          </div>
+        </aside>
+      </div>
+
+      <footer>
+        tw1ns3cdad.github.io
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
